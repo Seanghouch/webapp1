@@ -1,2 +1,2 @@
 FROM seanghouch/nginx:1.0
-COPY ./app share/nginx/html
+COPY ./teaser-html /usr/share/nginx/html
