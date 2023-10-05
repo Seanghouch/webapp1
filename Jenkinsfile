@@ -23,6 +23,7 @@ pipeline {
         stage('Build Docker Image'){
             steps{
                 script{
+                    checkout scm
                     docker_image = docker.build("${IMAGE_NAME}")
                 }
             }
