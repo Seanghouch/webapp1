@@ -1,7 +1,7 @@
 node {
     checkout scm
 
-    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+    docker.withRegistry('https://registry.hub.docker.com', 'dockerhubs') {
 
         def customImage = docker.build("seanghouch/nginx:${env.BUILD_ID}")
 
