@@ -1,11 +1,28 @@
-node {
-    checkout scm
+pipeline {
 
-    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+    agent any
 
-        def customImage = docker.build("seanghouch/nginx:${env.BUILD_ID}")
-
-        /* Push the container to the custom Registry */
-        customImage.push()
+    environment {
+        DOCKER_USERNAME = 'seanghouch'
+        APP_NAME = 'nginx'
+        IMAGE_TAG = "{$BUILDE_NUMBER}"
+        IMAGE_NAME = "${DOCKER_USERNAME}" + "/" + "APP_NAME"
+        REGISTRY_CREDS = 'dockerhub'
     }
+
+    stages{
+        stage('Cleanup Workspace'){
+            script{
+                cleanWs()
+            }
+        }
+        stage('Checkout SCM'){
+             script{
+                git credentialsId: 'github',
+                url: 'https://github.com/Seanghouch/webapp1.git',
+                branch: 'main'
+             }   
+        }
+    }
+    
 }
