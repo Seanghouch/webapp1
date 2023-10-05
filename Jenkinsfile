@@ -19,15 +19,7 @@ pipeline {
                 }
             }
         }
-        stage('Checkout SCM'){
-            steps{
-                script{
-                    git credentialsId: 'github',
-                    url: 'https://github.com/Seanghouch/webapp1.git',
-                    branch: 'main'
-                 }  
-            }
-        }
+        
         stage('Build Docker Image'){
             steps{
                 script{
