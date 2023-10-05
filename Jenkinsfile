@@ -8,6 +8,7 @@ pipeline {
         IMAGE_TAG = "{$BUILDE_NUMBER}"
         IMAGE_NAME = "${DOCKER_USERNAME}" + "/" + "APP_NAME"
         REGISTRY_CREDS = 'dockerhub'
+        VERSION = 1.0
     }
 
     stages{
