@@ -21,9 +21,18 @@ pipeline {
         stage('Checkout SCM'){
             steps{
                 script{
+                    git credentialsId: 'github',
                     url: 'https://github.com/Seanghouch/webapp1.git',
                     branch: 'main'
                  }  
+            }
+        }
+    }
+
+    stages{
+        steps{
+            script{
+                docker_image = docker.build ${IMAGE_NAME}
             }
         }
     }
