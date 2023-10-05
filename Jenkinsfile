@@ -12,16 +12,20 @@ pipeline {
 
     stages{
         stage('Cleanup Workspace'){
-            script{
-                cleanWs()
+            steps{
+                 script{
+                    cleanWs()
+                }
             }
         }
         stage('Checkout SCM'){
-             script{
-                git credentialsId: 'github',
-                url: 'https://github.com/Seanghouch/webapp1.git',
-                branch: 'main'
-             }   
+            steps{
+                script{
+                    git credentialsId: 'github',
+                    url: 'https://github.com/Seanghouch/webapp1.git',
+                    branch: 'main'
+                 }  
+            }
         }
     }
     
