@@ -23,6 +23,7 @@ pipeline {
             steps{
                 script{
                     checkout scm
+                    sh 'docker --version'
                     sh 'docker build -t custom-nginx .'
                 }
             }
