@@ -1,10 +1,6 @@
 pipeline {
 
-    agent {
-        node {
-            label 'docker-nginx'
-        }
-    }
+    agent any
 
     environment {
         DOCKER_USERNAME = 'seanghouch'
