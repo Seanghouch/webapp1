@@ -28,7 +28,7 @@ pipeline {
             steps{
                 script{
                     checkout scm
-                    sh 'nginx -v'
+                    sh 'docker build -t custom-nginx .'
                 }
             }
         }
