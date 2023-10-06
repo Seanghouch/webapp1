@@ -1,12 +1,11 @@
-pipeline {
-    agent any
-    stages {
-        stage('Test') {
-            steps {
-                sh 'docker --version'
-                sh 'ls -a'
-                sh 'docker pull nginx'
-            }
-        }
+node {
+    checkout scm
+
+    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+
+        def customImage = docker.build("nginx:${env.BUILD_ID}")
+
+        /* Push the container to the custom Registry */
+        /* customImage.push()*/
     }
 }
