@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
+                sh 'docker --version'
                 sh 'ls -a'
                 sh 'docker pull nginx'
             }
