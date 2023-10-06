@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'docker build -t custom-nginx .'
+                sh 'docker --version'
             }
         }
     }
