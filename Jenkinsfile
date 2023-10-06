@@ -24,7 +24,7 @@ pipeline {
             steps{
                 script{
                     checkout scm
-                    docker_image = docker.build("my-webapp1")
+                    sh 'nginx -v'
                 }
             }
         }
