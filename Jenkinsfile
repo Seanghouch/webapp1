@@ -24,7 +24,7 @@ pipeline {
             steps{
                 script{
                     checkout scm
-                    docker_image = docker.build("${IMAGE_NAME}")
+                    docker_image = docker.build("my-webapp1")
                 }
             }
         }
