@@ -1,6 +1,6 @@
 pipeline {
 
-    agent { dockerfile true }
+    agent any
 
     environment {
         DOCKER_USERNAME = 'seanghouch'
@@ -24,6 +24,7 @@ pipeline {
                 script{
                     checkout scm
                     sh 'docker --version'
+                    sh 'docker build -t mywebapp1 .'
                 }
             }
         }
