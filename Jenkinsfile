@@ -5,6 +5,9 @@ pipeline {
             steps{
                 cleanWs()
             }
+            steps{
+                sh 'docker --version'
+            }
         }
         stage('Build') {
             agent {
