@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage('Build') {
-            cleanWs()
+            steps { cleanWs() }
             agent {
                 docker {
                     image 'gradle:8.2.0-jdk17-alpine'
