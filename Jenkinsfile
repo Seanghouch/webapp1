@@ -1,30 +1,33 @@
 pipeline {
-    agent any
-    stages {
-        stage('Clean WP'){
+
+    agent { dockerfile true }
+
+    environment {
+        DOCKER_USERNAME = 'seanghouch'
+        APP_NAME = 'nginx'
+        IMAGE_TAG = "{$BUILDE_NUMBER}"
+        IMAGE_NAME = "${DOCKER_USERNAME}" + "/" + "${APP_NAME}"
+        REGISTRY_CREDS = 'dockerhub'
+        VERSION = 1.0
+    }
+
+    stages{
+        stage('Cleanup Workspace'){
             steps{
-                cleanWs()
-            }
-            steps{
-                script{
-                    sh 'docker --version'   
+                 script{
+                    cleanWs()
                 }
             }
         }
-        stage('Build') {
-            agent {
-                docker {
-                    image 'gradle:8.2.0-jdk17-alpine'
-                    // Run the container on the node specified at the
-                    // top-level of the Pipeline, in the same workspace,
-                    // rather than on a new node entirely:
-                    reuseNode true
+        stage('Build Docker Image'){
+            steps{
+                script{
+                    checkout scm
+                    sh 'docker --version'
+                    sh 'docker build -t custom-nginx .'
                 }
-            }
-            steps {
-               
-                sh 'docker --version'
             }
         }
     }
+    
 }
