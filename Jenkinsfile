@@ -13,6 +13,7 @@ pipeline {
             }
             steps {
                 sh 'gradle --version'
+                sh 'docker --version'
             }
         }
     }
