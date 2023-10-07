@@ -6,7 +6,9 @@ pipeline {
                 cleanWs()
             }
             steps{
-                sh 'docker --version'
+                script{
+                    sh 'docker --version'   
+                }
             }
         }
         stage('Build') {
