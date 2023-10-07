@@ -1,33 +1,12 @@
 pipeline {
-
-    agent { dockerfile true }
-
-    environment {
-        DOCKER_USERNAME = 'seanghouch'
-        APP_NAME = 'nginx'
-        IMAGE_TAG = "{$BUILDE_NUMBER}"
-        IMAGE_NAME = "${DOCKER_USERNAME}" + "/" + "${APP_NAME}"
-        REGISTRY_CREDS = 'dockerhub'
-        VERSION = 1.0
+    agent {
+        docker { image 'node:18.18.0-alpine3.18' }
     }
-
-    stages{
-        stage('Cleanup Workspace'){
-            steps{
-                 script{
-                    cleanWs()
-                }
-            }
-        }
-        stage('Build Docker Image'){
-            steps{
-                script{
-                    checkout scm
-                    sh 'docker --version'
-                    sh 'docker build -t custom-nginx .'
-                }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
             }
         }
     }
-    
 }
