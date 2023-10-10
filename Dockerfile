@@ -1,1 +1,1 @@
-FROM seanghouch/nginx:latest
+FROM seanghouch/nginx:1.0
