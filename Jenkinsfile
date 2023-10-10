@@ -24,6 +24,7 @@ pipeline {
                 script{
                     checkout scm
                     sh 'docker --version'
+                    sh 'java --version'
                     sh 'docker build -t mywebapp1 .'
                 }
             }
