@@ -1,45 +1,11 @@
-pipeline {
+node {
+    checkout scm
 
-    agent any
+    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
 
-    environment {
-        DOCKER_USERNAME = 'seanghouch'
-        APP_NAME = 'nginx'
-        IMAGE_TAG = "{$BUILDE_NUMBER}"
-        IMAGE_NAME = "{$DOCKER_USERNAME}" + "/" + "{$APP_NAME}"
-        REGISTRY_CREDS = 'dockerhub'
-        VERSION = 1.0
+        def customImage = docker.build("seanghouch/nginx:1.${env.BUILD_ID}")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
     }
-
-    stages{
-        stage('Cleanup Workspace'){
-            steps{
-                 script{
-                    cleanWs()
-                }
-            }
-        }
-        stage('Build Docker Image'){
-            steps{
-                script{
-                    checkout scm
-                    sh 'docker --version'
-                    sh 'java --version'
-                    /*sh 'docker build -t mywebapp1 .' */
-                }
-            }
-        }
-        stage('Push Docker Image'){
-            step{
-                docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-
-                    def customImage = docker.build("mywebapp1:1.${env.BUILD_ID}")
-            
-                    /* Push the container to the custom Registry */
-                    customImage.push()
-                }
-            }
-        }
-    }
-    
 }
