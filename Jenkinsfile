@@ -1,6 +1,6 @@
 pipeline {
 
-    agent {label = jenkins-agent}
+    agent {label = 'jenkins-agent'}
 
     environment {
         DOCKER_USERNAME = 'seanghouch'
