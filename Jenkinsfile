@@ -29,7 +29,7 @@ pipeline {
                     sh 'java --version'
                     sh 'docker build -t mywebapp1 .'
                     docker.withRegistry('https://registry.hub.docker.com', REGISTRY_CREDS) {
-                        def customImage = docker.build("${IMAGE_NAME}:${env.BUILD_ID}")
+                        def customImage = docker.build("${IMAGE_NAME}1.:${env.BUILD_ID}")
                         /* Push the container to the custom Registry */
                         customImage.push()
                     }
