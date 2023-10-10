@@ -25,8 +25,17 @@ pipeline {
                     checkout scm
                     sh 'docker --version'
                     sh 'java --version'
-                    sh 'docker build -t mywebapp1 .'
+                    /*sh 'docker build -t mywebapp1 .' */
                 }
+            }
+        }
+        stage('Push Docker Image'){
+            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+
+                def customImage = docker.build("mywebapp1:1.${env.BUILD_ID}")
+        
+                /* Push the container to the custom Registry */
+                customImage.push()
             }
         }
     }
