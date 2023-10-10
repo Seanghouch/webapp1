@@ -23,7 +23,6 @@ pipeline {
             steps{
                 script{
                     checkout scm
-                    sh 'apt-get update'
                     sh 'docker --version'
                     sh 'java --version'
                     sh 'docker build -t mywebapp1 .'
