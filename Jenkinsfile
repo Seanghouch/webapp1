@@ -1,6 +1,6 @@
 pipeline {
 
-    agent any
+    agent Agent1
 
     environment {
         DOCKER_USERNAME = 'seanghouch'
