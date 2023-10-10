@@ -1,9 +1,7 @@
 pipeline {
 
     agent {
-        node {
-            label 'jenkins-agent'
-        }
+        label 'jenkins-agent'
     }
 
     environment {
