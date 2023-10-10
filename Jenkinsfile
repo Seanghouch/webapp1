@@ -23,7 +23,6 @@ pipeline {
             steps{
                 script{
                     checkout scm
-                    sh 'apt install docker.io'
                     sh 'apt-get update'
                     sh 'docker --version'
                     sh 'java --version'
